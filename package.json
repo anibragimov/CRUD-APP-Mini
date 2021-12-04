@@ -1,0 +1,21 @@
+{
+  "name": "crud-app-mini",
+  "version": "1.0.0",
+  "description": "Mini Unit",
+  "main": "app.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app",
+    "dev": "cross-env NODE_ENV=development nodemon app"
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anibragimov/CRUD-APP-Mini.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anibragimov/CRUD-APP-Mini/issues"
+  },
+  "homepage": "https://github.com/anibragimov/CRUD-APP-Mini#readme"
+}
