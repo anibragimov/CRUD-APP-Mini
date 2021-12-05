@@ -20,6 +20,23 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{#each students}}
+                        <tr>
+                            <td>{{@index}}</td>
+                            <td>{{_name}}</td>
+                            <td>{{email}}</td>
+                             <td>{{gender}}</td>
+                            <td>{{status}}</td>
+                            <td>
+                            <a href="/update-user?id={{_id}}" class="btn border-shadow update">
+                                 <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                            </a>
+                            <a class="btn border-shadow delete" data-id={{_id}}
+                                <span class="text-gradient"><i class="fas fa-times"></i></span>
+                            </a>
+                            </td>
+                        </tr>
+                        {{/each}}
                     </tbody>
                 </table>
             </form>

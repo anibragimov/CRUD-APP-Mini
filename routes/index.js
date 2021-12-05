@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const axios = require('axios')
 const controller = require('../controller/controller')
 
 // @desc Login
@@ -11,7 +12,14 @@ router.get('/', (req, res) => {
 // @desc Dasboard
 // @route GET /
 router.get('/dashboard', (req, res) => {
-    res.render('dashboard')
+    axios.get('http://localhost:3000/api/students')
+    .then(function(response){
+        console.log(response.data)
+        res.render('dashboard', {students: response.data.lean()})
+    })
+    .catch(err => {
+        res.send(err)
+    })
 })
 
 // @desc Add User
