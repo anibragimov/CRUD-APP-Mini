@@ -3,6 +3,7 @@ var StudentDB = require('../models/student')
 //create users
 exports.create = (req,res) =>{
 
+    console.log(req.body)
     //validating requst(making sure form is formatited correctly)
     if(!req.body){
         res.status(400).send({message : "Content can't be empty!"})
@@ -19,7 +20,8 @@ exports.create = (req,res) =>{
     newStudent
         .save(newStudent)
         .then(data => {
-            res.send(data)
+            //res.send(data)
+            res.redirect("/dashboard")
         })
         .catch(err => {
             res.status(500).send({
