@@ -4,6 +4,7 @@ const router = express.Router()
 const axios = require('axios')
 const controller = require('../controller/controller')
 const student = require('../models/student')
+const user = require('../models/user')
 const { ensureAuth, ensureGuest} = require('../controller/auth')
 
 
@@ -16,13 +17,18 @@ router.get('/', ensureGuest ,(req, res) => {
 // @desc Dasboard
 // @route GET /
 router.get('/dashboard', ensureAuth , (req, res) => {
-    axios.get('http://localhost:3000/api/students')
-    .then(function(response){
-        console.log(response.data)
-        res.render('dashboard', {students: response.data})
+   // console.log(req.user.id)
+    //axios.get('http://localhost:3000/api/students')
+
+    student.find({createdBy: req.user.googleId}).lean()
+    .then(response => {
+        console.log(response)
+        res.render('dashboard', {students: response})       
     })
     .catch(err => {
-        res.send(err)
+        res.status(500).send({
+        message: err.message || "Something went wrong while retrieving the user"
+        })
     })
 })
 
@@ -70,7 +76,7 @@ router.get('/auth/logout', (req,res) => {
 /
 router.post('/api/students', controller.create)
 router.get('/api/students', controller.find)
-router.put('/api/students/:id', controller.update)
+router.put('/api/students/:id',controller.update)
 router.delete('/api/students/:id', controller.delete)
 
 // @desc 404 not found

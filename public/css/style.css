@@ -23,10 +23,14 @@ a {
     margin: auto;
 }
 
+
 .nav-brand{
     font-size: 1.5em;
     font-weight: bold;
+    justify-content: center;
 }
+
+
 
 .d-flex{
     display: flex;
@@ -44,6 +48,18 @@ a {
 .border-shadow{
     border: 1px solid var(--border-btn);
     box-shadow: 1px 3px 10px #e9ecef;
+}
+
+.border-shadow-black{
+    border: 1px solid var(--border-btn);
+    box-shadow: 1px 3px 10px #1a1b1b;
+    --border-btn: none;
+
+}
+
+.bg-gree{
+    background-color:#06d6a0 ;
+
 }
 
 .text-dark{

@@ -1,9 +1,10 @@
 var StudentDB = require('../models/student')
-
+var userDB = require('../models/user')
+const express = require('express')
+const router = express.Router()
 //create users
 exports.create = (req,res) =>{
 
-    console.log(req.body)
     //validating requst(making sure form is formatited correctly)
     if(!req.body){
         res.status(400).send({message : "Content can't be empty!"})
@@ -14,7 +15,8 @@ exports.create = (req,res) =>{
         name:req.body.name,
         email:req.body.email,
         gender:req.body.gender,
-        status:req.body.status
+        status:req.body.status,
+        createdBy:req.user.googleId
     })
 
     newStudent
@@ -33,6 +35,7 @@ exports.create = (req,res) =>{
 
 //retrieve and return users
 exports.find = (req,res) =>{
+
     if(req.query.id){
         const id = req.query.id
         StudentDB.findById(id)
@@ -48,7 +51,8 @@ exports.find = (req,res) =>{
         ])
 
     }else{
-
+        console.log(req.user)
+        //StudentDB.find({createdBy: req.user.googleId})
         StudentDB.find()
         .then(student => {
         res.send(student)
